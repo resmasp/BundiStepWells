@@ -1,0 +1,23 @@
+# Raw and intermediate datasets (often large/sensitive)
+data/raw/
+data/intermediate/
+
+# Build artefacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local env
+.venv/
+venv/
+ENV/
+.env
+
+# OS/editor
+.DS_Store
+.idea/
+.vscode/
