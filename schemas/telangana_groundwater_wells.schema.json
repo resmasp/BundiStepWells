@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Telangana groundwater wells (canonical record)",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["well_id", "state", "latitude", "longitude", "source_name"],
+  "properties": {
+    "well_id": { "type": "string", "minLength": 1 },
+    "source_name": { "type": "string", "minLength": 1 },
+    "source_record_id": { "type": ["string", "null"] },
+    "source_url": { "type": ["string", "null"] },
+    "license": { "type": ["string", "null"] },
+
+    "state": { "type": "string", "const": "Telangana" },
+    "district": { "type": ["string", "null"] },
+    "mandal": { "type": ["string", "null"] },
+    "village": { "type": ["string", "null"] },
+    "habitation": { "type": ["string", "null"] },
+
+    "latitude": { "type": "number", "minimum": 16.0, "maximum": 20.5 },
+    "longitude": { "type": "number", "minimum": 77.0, "maximum": 82.0 },
+    "location_accuracy_m": { "type": ["number", "null"], "minimum": 0 },
+
+    "well_type": {
+      "type": ["string", "null"],
+      "enum": ["borewell", "dugwell", "tubewell", "piezometer", "observation_well", "other", null]
+    },
+    "status": {
+      "type": ["string", "null"],
+      "enum": ["active", "inactive", "abandoned", "unknown", null]
+    },
+    "owner_type": {
+      "type": ["string", "null"],
+      "enum": ["public", "private", "community", "unknown", null]
+    },
+    "primary_use": {
+      "type": ["string", "null"],
+      "enum": ["drinking", "irrigation", "industrial", "monitoring", "mixed", "unknown", null]
+    },
+
+    "install_year": { "type": ["integer", "null"], "minimum": 1900, "maximum": 2100 },
+    "depth_m": { "type": ["number", "null"], "minimum": 0 },
+    "diameter_mm": { "type": ["number", "null"], "minimum": 0 },
+
+    "last_observed_date": { "type": ["string", "null"], "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "water_level_m_bgl": { "type": ["number", "null"] },
+    "yield_lpm": { "type": ["number", "null"], "minimum": 0 },
+
+    "ec_uScm": { "type": ["number", "null"], "minimum": 0 },
+    "tds_mgL": { "type": ["number", "null"], "minimum": 0 },
+    "fluoride_mgL": { "type": ["number", "null"], "minimum": 0 },
+    "nitrate_mgL": { "type": ["number", "null"], "minimum": 0 },
+    "arsenic_mgL": { "type": ["number", "null"], "minimum": 0 },
+    "iron_mgL": { "type": ["number", "null"], "minimum": 0 },
+
+    "created_at": { "type": ["string", "null"] },
+    "updated_at": { "type": ["string", "null"] }
+  }
+}
