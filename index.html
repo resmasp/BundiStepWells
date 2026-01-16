@@ -35,6 +35,8 @@
         <script src="js/labels.js"></script>
         <script src="data/Bundi_3.js"></script>
         <script src="data/StepwellLoations_4.js"></script>
+        <script src="data/plant_records.js"></script>
+        <script src="js/plant_qr.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -106,6 +108,46 @@
                 this._div.innerHTML = 'This project focuses on mapping the historic step wells (baoris) of Bundi district, Rajasthan, India. Bundi is renowned for its architectural heritage, particularly its step wells, which served as vital water sources in arid regions. The project utilizes geospatial data, including precise location points of the step wells, to create an interactive map that provides a visual representation of these ancient water structures.<br />The aim of this project is to highlight the spatial distribution of step wells, their proximity to urban centers, and their historical significance. Through GIS spatial analysis tools, will be employed to explore patterns, accessibility, and conservation status. The project will also include multimedia integration, where images and information about each step well will be displayed interactively to enrich user experience and promote awareness of Bundi\'s cultural heritage.';
         };
         abstract.addTo(map);
+        var qrPlan = new L.Control({'position':'bottomleft'});
+        qrPlan.onAdd = function (map) {
+            this._div = L.DomUtil.create('div', 'leaflet-control qrPlan');
+            this._div.id = 'qr-plan';
+                this._div.setAttribute("onmouseenter", "qrPlan.show()");
+                this._div.setAttribute("onmouseleave", "qrPlan.hide()");
+                L.DomEvent.disableClickPropagation(this._div);
+                L.DomEvent.disableScrollPropagation(this._div);
+                this.hide();
+                return this._div;
+            };
+            qrPlan.hide = function () {
+                this._div.classList.remove("qrPlanUncollapsed");
+                this._div.classList.add("qrPlan");
+                this._div.innerHTML = 'QR'
+            }
+            qrPlan.show = function () {
+                this._div.classList.remove("qrPlan");
+                this._div.classList.add("qrPlanUncollapsed");
+                this._div.innerHTML = '<h3>Plant QR code</h3>\
+                <div class="qr-plan-summary">Create a QR tag that links to a plant profile.</div>\
+                <label class="qr-plan-label" for="plant-id-input">Plant ID</label>\
+                <div class="qr-plan-input-row">\
+                    <input id="plant-id-input" class="qr-plan-input" type="text" placeholder="PLANT-2026-0001" list="plant-ids">\
+                    <button id="plant-id-generate" class="qr-plan-button" type="button">Generate</button>\
+                </div>\
+                <datalist id="plant-ids"></datalist>\
+                <div id="plant-qr-status" class="qr-plan-status"></div>\
+                <div class="qr-plan-url">Profile URL: <a id="plant-profile-link" href="#" target="_blank" rel="noopener">Enter a Plant ID</a></div>\
+                <div class="qr-code-wrap">\
+                    <div id="plant-qr-code" class="qr-code"><img id="plant-qr-image" alt="QR code placeholder"></div>\
+                    <div id="plant-qr-details" class="qr-plan-details"></div>\
+                </div>\
+                <div class="qr-plan-meta"><strong>Minimum fields:</strong> Plant ID, planter name, organization, planting date, species, location.</div>\
+                <div class="qr-plan-footnote">QR image provided by api.qrserver.com.</div>';
+                if (window.initPlantQrPanel) {
+                    window.initPlantQrPanel();
+                }
+        };
+        qrPlan.addTo(map);
         var zoomControl = L.control.zoom({
             position: 'topleft'
         }).addTo(map);

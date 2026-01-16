@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/plant.css">
+        <title>Plant QR Profile</title>
+    </head>
+    <body>
+        <main class="plant-page">
+            <header class="plant-header">
+                <div>
+                    <p class="plant-kicker">Plant QR profile</p>
+                    <h1 id="plant-title">Plant profile</h1>
+                    <p id="plant-status" class="plant-status"></p>
+                </div>
+                <a class="plant-back" href="index.html">Back to map</a>
+            </header>
+            <section class="plant-grid">
+                <div class="plant-card">
+                    <h2>Profile details</h2>
+                    <ul id="plant-details" class="plant-details"></ul>
+                    <div id="plant-empty" class="plant-empty"></div>
+                </div>
+                <div class="plant-card">
+                    <h2>QR code</h2>
+                    <div class="plant-qr">
+                        <img id="plant-qr-image" alt="QR code placeholder">
+                    </div>
+                    <div class="plant-link-row">
+                        <span>Profile URL</span>
+                        <a id="plant-link" href="#" target="_blank" rel="noopener">Enter a Plant ID to generate a QR code.</a>
+                    </div>
+                    <div class="plant-footnote">QR image provided by api.qrserver.com.</div>
+                </div>
+            </section>
+        </main>
+        <script src="data/plant_records.js"></script>
+        <script src="js/plant_profile.js"></script>
+    </body>
+</html>

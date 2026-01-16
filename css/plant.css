@@ -1,0 +1,128 @@
+:root {
+    --text: #2b2b2b;
+    --muted: #666666;
+    --border: #e2e2e2;
+    --bg: #f4f5f7;
+    --card-bg: #ffffff;
+    --accent: #1160a8;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.plant-page {
+    max-width: 960px;
+    margin: 24px auto;
+    padding: 0 16px 32px;
+}
+
+.plant-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.plant-kicker {
+    margin: 0;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+}
+
+.plant-status {
+    margin: 6px 0 0;
+    color: var(--muted);
+}
+
+.plant-back {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.plant-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+}
+
+.plant-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.plant-details {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.plant-details li {
+    margin-bottom: 8px;
+}
+
+.plant-detail-label {
+    color: var(--muted);
+    display: inline-block;
+    min-width: 110px;
+}
+
+.plant-qr {
+    width: 180px;
+    height: 180px;
+    border: 1px dashed var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    background: #ffffff;
+}
+
+.plant-qr img {
+    width: 180px;
+    height: 180px;
+}
+
+.plant-link-row {
+    font-size: 12px;
+    word-break: break-all;
+}
+
+.plant-link-row span {
+    display: block;
+    color: var(--muted);
+    margin-bottom: 4px;
+}
+
+.plant-empty {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.plant-footnote {
+    margin-top: 8px;
+    font-size: 10px;
+    color: var(--muted);
+}
+
+@media (max-width: 600px) {
+    .plant-header {
+        flex-direction: column;
+    }
+}
