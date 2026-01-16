@@ -35,6 +35,8 @@
         <script src="js/labels.js"></script>
         <script src="data/Bundi_3.js"></script>
         <script src="data/StepwellLoations_4.js"></script>
+        <script src="data/plant_records.js"></script>
+        <script src="js/plant_qr.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -108,10 +110,12 @@
         abstract.addTo(map);
         var qrPlan = new L.Control({'position':'bottomleft'});
         qrPlan.onAdd = function (map) {
-            this._div = L.DomUtil.create('div', 'qrPlan');
+            this._div = L.DomUtil.create('div', 'leaflet-control qrPlan');
             this._div.id = 'qr-plan';
                 this._div.setAttribute("onmouseenter", "qrPlan.show()");
                 this._div.setAttribute("onmouseleave", "qrPlan.hide()");
+                L.DomEvent.disableClickPropagation(this._div);
+                L.DomEvent.disableScrollPropagation(this._div);
                 this.hide();
                 return this._div;
             };
@@ -123,16 +127,25 @@
             qrPlan.show = function () {
                 this._div.classList.remove("qrPlan");
                 this._div.classList.add("qrPlanUncollapsed");
-                this._div.innerHTML = '<h3>QR code plan for plant tracking</h3>\
-                <div>Goal: identify each plant and who planted it.</div>\
-                <ol>\
-                    <li>Assign a unique Plant ID (example: PLANT-2026-0001).</li>\
-                    <li>Capture planter name, species, GPS, and planting date.</li>\
-                    <li>Create a profile URL using the Plant ID and store details.</li>\
-                    <li>Generate a QR code for the profile URL and print a durable tag.</li>\
-                    <li>Attach the tag and keep status updates on the profile.</li>\
-                </ol>\
-                <div class="qr-plan-meta"><strong>Minimum fields:</strong> Plant ID, planter name, organization, planting date, species, location.</div>';
+                this._div.innerHTML = '<h3>Plant QR code</h3>\
+                <div class="qr-plan-summary">Create a QR tag that links to a plant profile.</div>\
+                <label class="qr-plan-label" for="plant-id-input">Plant ID</label>\
+                <div class="qr-plan-input-row">\
+                    <input id="plant-id-input" class="qr-plan-input" type="text" placeholder="PLANT-2026-0001" list="plant-ids">\
+                    <button id="plant-id-generate" class="qr-plan-button" type="button">Generate</button>\
+                </div>\
+                <datalist id="plant-ids"></datalist>\
+                <div id="plant-qr-status" class="qr-plan-status"></div>\
+                <div class="qr-plan-url">Profile URL: <a id="plant-profile-link" href="#" target="_blank" rel="noopener">Enter a Plant ID</a></div>\
+                <div class="qr-code-wrap">\
+                    <div id="plant-qr-code" class="qr-code"><img id="plant-qr-image" alt="QR code placeholder"></div>\
+                    <div id="plant-qr-details" class="qr-plan-details"></div>\
+                </div>\
+                <div class="qr-plan-meta"><strong>Minimum fields:</strong> Plant ID, planter name, organization, planting date, species, location.</div>\
+                <div class="qr-plan-footnote">QR image provided by api.qrserver.com.</div>';
+                if (window.initPlantQrPanel) {
+                    window.initPlantQrPanel();
+                }
         };
         qrPlan.addTo(map);
         var zoomControl = L.control.zoom({
