@@ -106,6 +106,35 @@
                 this._div.innerHTML = 'This project focuses on mapping the historic step wells (baoris) of Bundi district, Rajasthan, India. Bundi is renowned for its architectural heritage, particularly its step wells, which served as vital water sources in arid regions. The project utilizes geospatial data, including precise location points of the step wells, to create an interactive map that provides a visual representation of these ancient water structures.<br />The aim of this project is to highlight the spatial distribution of step wells, their proximity to urban centers, and their historical significance. Through GIS spatial analysis tools, will be employed to explore patterns, accessibility, and conservation status. The project will also include multimedia integration, where images and information about each step well will be displayed interactively to enrich user experience and promote awareness of Bundi\'s cultural heritage.';
         };
         abstract.addTo(map);
+        var qrPlan = new L.Control({'position':'bottomleft'});
+        qrPlan.onAdd = function (map) {
+            this._div = L.DomUtil.create('div', 'qrPlan');
+            this._div.id = 'qr-plan';
+                this._div.setAttribute("onmouseenter", "qrPlan.show()");
+                this._div.setAttribute("onmouseleave", "qrPlan.hide()");
+                this.hide();
+                return this._div;
+            };
+            qrPlan.hide = function () {
+                this._div.classList.remove("qrPlanUncollapsed");
+                this._div.classList.add("qrPlan");
+                this._div.innerHTML = 'QR'
+            }
+            qrPlan.show = function () {
+                this._div.classList.remove("qrPlan");
+                this._div.classList.add("qrPlanUncollapsed");
+                this._div.innerHTML = '<h3>QR code plan for plant tracking</h3>\
+                <div>Goal: identify each plant and who planted it.</div>\
+                <ol>\
+                    <li>Assign a unique Plant ID (example: PLANT-2026-0001).</li>\
+                    <li>Capture planter name, species, GPS, and planting date.</li>\
+                    <li>Create a profile URL using the Plant ID and store details.</li>\
+                    <li>Generate a QR code for the profile URL and print a durable tag.</li>\
+                    <li>Attach the tag and keep status updates on the profile.</li>\
+                </ol>\
+                <div class="qr-plan-meta"><strong>Minimum fields:</strong> Plant ID, planter name, organization, planting date, species, location.</div>';
+        };
+        qrPlan.addTo(map);
         var zoomControl = L.control.zoom({
             position: 'topleft'
         }).addTo(map);

@@ -92,6 +92,39 @@
             border-radius: 5px;
             max-width: 40%;
         }
+        .qrPlan {
+            font: bold 14px Arial, Helvetica, sans-serif;
+            text-indent: 1px;
+            background-color: #f8f8f8 !important;
+            width: 36px !important;
+            color: #444444 !important;
+            height: 30px !important;
+            text-align: center !important;
+            line-height: 30px !important;
+        }
+        .qrPlanUncollapsed {
+            padding: 8px 10px;
+            font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+            background-color: #f8f8f8 !important;
+            color: #444444 !important;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 5px;
+            max-width: 320px;
+        }
+        .qrPlanUncollapsed h3 {
+            margin: 0 0 6px 0;
+            font-size: 14px;
+        }
+        .qrPlanUncollapsed ol {
+            margin: 6px 0 0 18px;
+            padding: 0;
+        }
+        .qrPlanUncollapsed li {
+            margin: 0 0 4px 0;
+        }
+        .qrPlanUncollapsed .qr-plan-meta {
+            margin-top: 6px;
+        }
         .leaflet-control {
             box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4)!important;
         }
